@@ -1,9 +1,12 @@
+using Microsoft.OpenApi.Models;
+using PizzaStore.DB;
+
 var builder = WebApplication.CreateBuilder(args); 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo {
+    c.SwaggerDoc("v1", new OpenApiInfo {
         Title = "PizzaStore API",
         Description = "Making the Pizzas you love",
         Version = "V1"
@@ -19,7 +22,11 @@ app.UseSwaggerUI(c =>
 });
 
 app.MapGet("/", () => "Hello Everyone!");
-
-app.MapGet("/hello", () => "Hello from \\hello");
+// app.MapGet("/hello", () => "Hello from \\hello");
+app.MapGet("/pizzas/{id}", (int id) => PizzaDB.GetPizza(id));
+app.MapGet("/pizzas", () => PizzaDB.GetPizzas());
+app.MapPost("/pizzas", (Pizza pizza) => PizzaDB.CreatePizza(pizza));
+app.MapPut("/pizzas", (Pizza pizza) => PizzaDB.UpdatePizza(pizza));
+app.MapDelete("/pizzas/{id}", (int id) => PizzaDB.RemovePizza(id)); 
 
 app.Run();
