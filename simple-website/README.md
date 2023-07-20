@@ -1,0 +1,1 @@
+Example created from exercise (Exercise - Set up the structure of your web app): https://learn.microsoft.com/en-us/training/modules/get-started-with-web-development/2-project-structure
