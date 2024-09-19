@@ -1,0 +1,5 @@
+﻿@minimal-api-example-1_HostAddress = https://localhost:7289
+
+GET {{minimal-api-example-1_HostAddress}}/
+
+###
